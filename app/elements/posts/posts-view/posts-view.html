@@ -1,0 +1,64 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<dom-module id="posts-view">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-card {
+        width: 100%;
+        margin: 16px auto;
+        background: white;
+      }
+
+      paper-button a {
+        text-decoration: none;
+      }
+
+      paper-button.colored, paper-button a {
+        color: var(--default-primary-color);
+      }
+
+      paper-button.colored:hover {
+        background: var(--light-primary-color);
+      }
+    </style>
+
+    <template is="dom-repeat" items="[[data]]">
+      <paper-card heading="Card Title" image="http://placehold.it/350x65">
+        <div class="card-content"><span>[[_count(index)]]</span>. Some content</div>
+        <div class="card-actions">
+          <paper-button class="colored"><a href="/users/Rob">Read more...</a></paper-button>
+        </div>
+      </paper-card>
+    </template>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'posts-view',
+
+        properties: {
+          data: {
+            type: Array,
+            value: function() {
+              return [1, 2, 3, 4, 5];
+            },
+            notify: true
+          }
+        },
+
+        _count: function(i) {
+          return i + 1;
+        }
+      });
+    })();
+  </script>
+
+</dom-module>
